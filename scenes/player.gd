@@ -48,7 +48,7 @@ func execute_interaction():
 		var cur_interaction = all_interactions[0]
 		match cur_interaction.interact_type:
 			"print_text": print(cur_interaction.interact_value)
-			"fishing": fishCount = fishCount + 1 #get_tree().change_scene_to_file("res://scenes/fishing.tscn")
+			"fishing": get_tree().change_scene_to_file("res://scenes/fishing.tscn")
 			"altar": use_altar()
 			"tower": use_tower()
 

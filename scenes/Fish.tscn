@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgdud64wqrg6r"]
+
+[ext_resource type="Script" path="res://scenes/fish.gd" id="1_i3di1"]
+[ext_resource type="Texture2D" uid="uid://smtpsk2vxp6u" path="res://scenes/assets/fishTowerTileSet.png" id="2_2nqo0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgoui"]
+size = Vector2(7, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3e3u"]
+size = Vector2(6, 8)
+
+[node name="Fish" type="CharacterBody2D"]
+script = ExtResource("1_i3di1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_mgoui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2nqo0")
+region_enabled = true
+region_rect = Rect2(32, 8, 8, 8)
+
+[node name="InteractionComponents" type="Node2D" parent="."]
+z_index = 1
+
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="InteractionDistance" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+shape = SubResource("RectangleShape2D_l3e3u")
+
+[connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]

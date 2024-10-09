@@ -1,3 +1,3 @@
 extends Label
 
-@onready var fishCount = 
+@onready var fishCount = 1
