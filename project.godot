@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 buses/default_bus_layout=""
 
+[autoload]
+
+Global="*res://scenes/global.gd"
+AudioPlayer="*res://sounds/Audio_player.tscn"
+
 [display]
 
 window/size/viewport_width=480
@@ -59,6 +64,7 @@ menu={
 [layer_names]
 
 2d_physics/layer_2="interactions"
+2d_physics/layer_3="fishlayer"
 
 [rendering]
 

@@ -5,10 +5,9 @@ const SPEED = 50.0
 
 @onready var all_interactions = []
 @onready var interactLabel = $InteractionComponents/InteractLabel
-@onready var fishCount = 0
+@onready var fishCounter = get_node("../CanvasLayer/FishCounter")
 @onready var hasCandles = false
 @onready var hasBook = false
-
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("interact"):
@@ -26,6 +25,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
 
 
 func _on_interaction_area_area_entered(area):
@@ -51,14 +51,21 @@ func execute_interaction():
 			"fishing": get_tree().change_scene_to_file("res://scenes/fishing.tscn")
 			"altar": use_altar()
 			"tower": use_tower()
+			"exit": get_tree().change_scene_to_file("res://scenes/Credits.tscn")
 
 func place_fish():
-	print("Placed fish")
-	fishCount = fishCount - 1
+	if Global.towerHeight < 6:
+		Global.fishCount = Global.fishCount - 1
+		Global.towerHeight = Global.towerHeight + 1
+		print("Towerheight: %s", Global.towerHeight)
 
 func use_altar():
 	print("Alter used")
 
 func use_tower():
-	if fishCount > 0:
+	if Global.towerHeight == 6:
+		global_position = Vector2i(430,100)
+	elif Global.fishCount > 0:
 		place_fish()
+		$PlaceBlock.play()
+		

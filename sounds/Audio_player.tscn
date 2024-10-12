@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dijbrnpa04w7y"]
+
+[ext_resource type="AudioStream" uid="uid://cdov50g64ydeq" path="res://sounds/music2.wav" id="1_fmi3s"]
+[ext_resource type="Script" path="res://sounds/audio_stream_player.gd" id="2_6s68s"]
+
+[node name="audio_player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fmi3s")
+autoplay = true
+script = ExtResource("2_6s68s")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

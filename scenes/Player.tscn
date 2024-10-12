@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cylv53a83o70n"]
+[gd_scene load_steps=8 format=3 uid="uid://cylv53a83o70n"]
 
 [ext_resource type="Texture2D" uid="uid://bonfojf3aag4g" path="res://scenes/assets/player.png" id="1_1t6da"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_gu8gu"]
 [ext_resource type="FontFile" uid="uid://bcysoye3pnnu" path="res://menus/assets/c64esque.ttf" id="3_q1i6y"]
+[ext_resource type="AudioStream" uid="uid://c3glws81y4ttv" path="res://sounds/place_block.wav" id="4_70rpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgoui"]
 size = Vector2(7, 8)
@@ -49,6 +50,11 @@ offset_bottom = -25.0
 label_settings = SubResource("LabelSettings_v1sov")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="PlaceBlock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_70rpe")
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]
